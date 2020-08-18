@@ -1,7 +1,6 @@
 import { Controller,Get, Post, Body, Req} from '@nestjs/common';
 import {SkillsService} from './skills.service'
 import {Skill} from './dto/skill.dto'
-import {Request, Response}from 'express'
 @Controller('skills')
 
 export class SkillsController {
@@ -17,5 +16,4 @@ export class SkillsController {
 		console.log(skill)
 		this.skillsService.create(skill)
 	}
-
 }
