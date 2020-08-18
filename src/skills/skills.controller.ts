@@ -1,4 +1,4 @@
-import { Controller,Get, Post, Body, Res, Delete} from '@nestjs/common';
+import { Controller,Get, Post, Body,  Delete} from '@nestjs/common';
 import {SkillsService} from './skills.service'
 import {SkillDto} from './dto/skill.dto'
 @Controller('skills')
@@ -18,5 +18,8 @@ export class SkillsController {
 		this.skillsService.create(skill)
 	}
 
-	@Delete
+	@Delete()
+	delete (){
+		return 'deleted'
+	}
 }
