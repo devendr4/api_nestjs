@@ -1,13 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { Skill } from './interfaces/skill.interface' 
+import { Model } from 'mongoose'
+import { InjectModel } from '@nestjs/mongoose'
+import { SkillDto } from './dto/skill.dto'
+import { Skill } from './schemas/skills.schema'
 
 @Injectable()
 export class SkillsService {	
-
-	create(skill: Skill){
-		let a = skill.name + ' ' + skill.knowledge
-		console.log(a)
-		return a 
+	constructor(@InjectModel(Skill.name)private skillModel: Model<Skill> ) {}
+	
+	async get(){
+	let a:any = await this.skillModel.find().exec()
+	console.log(a)
+		return a
+	}
+	
+	async create(skillDto: SkillDto){
+		const newSkill = new this.skillModel(skillDto)
+		return newSkill.save()
 	}
 }
 

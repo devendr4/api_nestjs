@@ -1,18 +1,19 @@
-import { Controller,Get, Post, Body, Req} from '@nestjs/common';
+import { Controller,Get, Post, Body, Res} from '@nestjs/common';
 import {SkillsService} from './skills.service'
-import {Skill} from './dto/skill.dto'
+import {SkillDto} from './dto/skill.dto'
 @Controller('skills')
 
 export class SkillsController {
-	constructor(private skillsService: SkillsService){}
+	constructor(private readonly skillsService: SkillsService){}
 
 	@Get()
-	getSkills(): string{
-		return 'puta3'
+	async getSkills(){
+		console.log(this.skillsService.get())
+		return await this.skillsService.get()
 	}
 
 	@Post()
-	create(@Body() skill: Skill){
+	create(@Body() skill: SkillDto){
 		console.log(skill)
 		this.skillsService.create(skill)
 	}

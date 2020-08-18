@@ -1,4 +1,4 @@
-export class Skill {
+export class SkillDto {
 	name: string
 	knowledge: number
 }
