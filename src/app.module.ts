@@ -7,8 +7,10 @@ import { MongooseModule }from '@nestjs/mongoose'
 
 @Module({
 	imports: [
-		MongooseModule.forRoot('mongodb://localhost/nest'),
-	/*	GraphQLModule.forRoot({
+		//MongooseModule.forRoot('mongodb://localhost/nest'),
+		MongooseModule.forRoot('mongodb+srv://devendr4:04166202204@devendr4.fpgvo.mongodb.net/api_nest?retryWrites=true&w=majority'),
+	/*	
+	 *	GraphQLModule.forRoot({
 			autoSchemaFile: 'src/schema.gql',
 			include: [SkillsModule],
 		}),*/
