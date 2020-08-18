@@ -12,6 +12,9 @@ export class Skill extends Document {
 	@Prop()
 	category: string
 
+	@Prop()
+	status: string
+
 	toJSON(){
 	let obj = this.toObject()
 	delete obj._id

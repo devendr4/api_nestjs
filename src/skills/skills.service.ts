@@ -18,5 +18,9 @@ export class SkillsService {
 		const newSkill = new this.skillModel(skillDto)
 		return newSkill.save()
 	}
+
+	delete(){
+
+	}
 }
 
