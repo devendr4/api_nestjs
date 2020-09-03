@@ -1,5 +1,19 @@
+import { IsDate, IsString, IsInt, IsIn } from 'class-validator';
 export class SkillDto {
-	name: string
-	knowledge: number
-	status: string
+  @IsString()
+  name: string;
+
+  //@IsInt()
+  knowledge: number;
+
+  @IsString()
+  @IsIn(['framework', 'language'])
+  type: string;
+
+  //@IsString()
+  //@IsIn(['enabled', 'enabled'])
+  status: string;
+
+  /*  @IsDate()*/
+  date: Date;
 }

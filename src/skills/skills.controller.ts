@@ -1,25 +1,41 @@
-import { Controller,Get, Post, Body,  Delete} from '@nestjs/common';
-import {SkillsService} from './skills.service'
-import {SkillDto} from './dto/skill.dto'
+import {
+  HttpException,
+  Param,
+  Controller,
+  Get,
+  Post,
+  Put,
+  Body,
+  Delete,
+  Res,
+} from '@nestjs/common';
+import { SkillsService } from './skills.service';
+import { SkillDto } from './dto/skill.dto';
+
 @Controller('skills')
-
 export class SkillsController {
-	constructor(private readonly skillsService: SkillsService){}
+  constructor(private readonly skillsService: SkillsService) {}
 
-	@Get()
-	async getSkills(){
-		console.log(this.skillsService.get())
-		return await this.skillsService.get()
-	}
+  @Get()
+  async getSkills() {
+    return await this.skillsService.get();
+  }
 
-	@Post()
-	create(@Body() skill: SkillDto){
-		console.log(skill)
-		this.skillsService.create(skill)
-	}
+  @Post()
+  createSkill(@Body() skill: SkillDto) {
+    return this.skillsService.create(skill);
+  }
 
-	@Delete()
-	delete (){
-		return 'deleted'
-	}
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() skill: any ) {
+    return this.skillsService.update(id,skill).catch(err => {
+      throw new HttpException('error', 404);
+    });
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    console.log(id);
+    return this.skillsService.delete(id);
+  }
 }
